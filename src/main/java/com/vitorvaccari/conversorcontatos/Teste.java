@@ -12,9 +12,9 @@ public class Teste {
         try (InputStream in = new FileInputStream(
                 "");) {
 
-            LeitorPlanilhaService contatos = new LeitorPlanilhaService();
+            LeitorPlanilhaService leitor = new LeitorPlanilhaService();
 
-            List<Contato> lista = contatos.ler(in);
+            List<Contato> lista = leitor.ler(in);
 
             System.out.println(lista);
 
