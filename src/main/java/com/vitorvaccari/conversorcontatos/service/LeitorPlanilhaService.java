@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -16,6 +18,17 @@ import com.vitorvaccari.conversorcontatos.model.Contato;
 
 @Service
 public class LeitorPlanilhaService {
+
+    private String lerTelefone(Cell celula, DataFormatter formatador) {
+        if(celula != null && celula.getCellType() == CellType.NUMERIC) {
+            double dCelula = celula.getNumericCellValue();
+            long lCelula = (long) dCelula;
+            String sCelula = String.valueOf(lCelula);
+
+            return sCelula;
+        }
+        return formatador.formatCellValue(celula);
+    };
 
     public List<Contato> ler(InputStream arquivo) throws IOException {
         try (Workbook wb = WorkbookFactory.create(arquivo)) {
@@ -30,7 +43,7 @@ public class LeitorPlanilhaService {
                 }
 
                 String nome = formatador.formatCellValue(linha.getCell(0));
-                String telefone = formatador.formatCellValue(linha.getCell(1));
+                String telefone = lerTelefone(linha.getCell(1), formatador);
 
                 if (nome.isBlank() && telefone.isBlank()) {
                     continue;
