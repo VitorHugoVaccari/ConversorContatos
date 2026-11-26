@@ -112,7 +112,7 @@ public class LeitorPlanilhaServiceTest {
 
             List<Contato> lista = leitor.ler(paraStream(wb));
 
-            assertEquals("5531955555555.0", lista.get(0).telefone());
+            assertEquals("5531955555555", lista.get(0).telefone());
         }
     }
 }
