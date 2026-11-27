@@ -2,6 +2,9 @@ package com.vitorvaccari.conversorcontatos.service;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+@Service 
 public class TelefoneNormalizer {
     public Optional<String> normalizar(String telefoneBruto) {
         // Tratando valores vazios
