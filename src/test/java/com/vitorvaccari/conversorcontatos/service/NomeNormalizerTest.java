@@ -47,6 +47,11 @@ public class NomeNormalizerTest {
     }
 
     @Test 
+    void deveRetornarVazioQuandoMultiplosEspacos() {
+        assertTrue(normalizer.normalizar("   ").isEmpty());
+    }
+
+    @Test 
     void deveRetornarVazioQuandoSoAspas() {
         assertTrue(normalizer.normalizar("''").isEmpty());
     }
